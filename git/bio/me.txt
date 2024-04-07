@@ -1,0 +1,3 @@
+Meu nome é Carlos e estou explorando e estudando a ferramenta git
+voltado para sua aplicação nas atividades a serem desempenhadas
+na AID - Assessoria de Inteligência de Dados.
