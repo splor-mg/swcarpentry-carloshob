@@ -242,3 +242,24 @@ expo2(2, 4)
 list.files("data","csv")
 
 filenames <- list.files()
+
+filenames[1:3]
+
+
+
+filenames <- list.files(path = "data",  
+                        # Now follows a regular expression that matches:
+                        pattern = "inflammation-[0-9]{2}.csv",
+                        #          |            |        the standard file extension of comma-separated values
+                        #          |            the variable parts (two digits, each between 0 and 9)
+                        #          the static part of the filenames
+                        full.names = TRUE)
+filenames <- filenames[1:3]
+for (f in filenames) {
+  print(f)
+  analyze(f)
+}
+
+
+
+
