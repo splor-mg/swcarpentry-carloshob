@@ -144,8 +144,7 @@ analyze("data/inflammation-01.csv")
 analyze("data/inflammation-02.csv")
 
 
-
-#loops# ----
+#loops e dataframe# ----
 
 df <- data.frame(
   Name = c("Alice", "Bob", "Charlie", "David"),
@@ -185,6 +184,7 @@ vowels <- c("a", "e", "i", "o", "u")
 
 for (v in vowels) {
   len <- len + 1
+  print(len)
 }
 len
 
@@ -237,7 +237,9 @@ expo2 <- function(num, numexpo){
 
 expo2(2, 4)
 
-#processing Multiple File# ---
+#processing multiple files# ---
+
+
   ?list.files()
 list.files("data","csv")
 
@@ -261,5 +263,115 @@ for (f in filenames) {
 }
 
 list.files("data")
+
+
+analyze_all <- function(folder = "data", pattern) {
+  # Runs the function analyze for each file in the given folder
+  # that contains the given pattern.
+  filenames <- list.files(path = folder, pattern = pattern, full.names = TRUE)
+  for (f in filenames) {
+    analyze(f)
+  }
+}
+
+
+
+#MAKING CHOICES# ----
+
+analyze <- function(filename) {
+  # Plots the average, min, and max inflammation over time.
+  # Input is character string of a csv file.
+  dat <- read.csv(filename, header = FALSE)
+  avg_day_inflammation <- apply(dat, 2, mean)
+  plot(avg_day_inflammation)
+  max_day_inflammation <- apply(dat, 2, max)
+  plot(max_day_inflammation)
+  min_day_inflammation <- apply(dat, 2, min)
+  plot(min_day_inflammation)
+}
+
+analyze("data/inflammation-01.csv")
+
+pdf("inflammation-01.pdf")
+analyze("data/inflammation-01.csv")
+dev.off()
+dev.cur()
+
+
+num <- 37
+
+if (num > 100) {
+  print("greater")
+  } else {
+   print("not greater")
+ }
+print("done")
+
+
+
+
+sign <- function(num) {
+  if(num > 0) {
+    return("+")
+  } else if(num == 0) {
+    return(0)
+  } else {
+    return("-")
+  }
+}
+
+sign(0)
+
+
+#operadores-lógicos#----
+
+
+if (0 == 0 && -1 < 0) {
+  print("both parts are true")
+} else {
+  print("at least one part is not true")
+}
+
+if (1 == 0 || -1 > 0) {
+  print("at least one part is true")
+} else {
+  print("neither part is true")
+}
+
+
+a <- NA
+a ==  0
+a == NA
+
+if (a == NA) {
+  print("Hi!")
+}
+
+if (is.na(a)) {
+  print("Hi!")
+} else {"bye!"}
+
+
+#plot_dist <- function()#----
+
+dat <- read.csv("data/inflammation-01.csv", header = FALSE)
+
+length(dat[1:5, 10])
+plot_dist(dat[, 10], threshold = 10)     # day (column) 10
+
+
+x <- seq(10)
+length("x")
+
+plot_dist <- function(x, threshold) {
+  if (length(x) > threshold) {
+    boxplot(x)
+  } else {
+    stripchart(x)
+  }
+}
+
+plot_dist(dat[,10], threshold = 10)
+
 
 
