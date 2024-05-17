@@ -152,7 +152,7 @@ df <- data.frame(
   Gender = c("Female", "Male", "Male", "Male")
 )
 
-# Viewing the data.frame
+# Viewing the data.frame# ----
 print(df)
 plot(df)
 
@@ -371,7 +371,85 @@ plot_dist <- function(x, threshold) {
   }
 }
 
+
 plot_dist(dat[,10], threshold = 10)
 
 
+plot_dist_op <- function(x, threshold, use_boxplot = TRUE) {
+  if (length(x) > threshold && use_boxplot) {
+    boxplot(x)
+  } else if (length(x) > threshold && !use_boxplot) {
+    hist(x)
+  } else {
+    stripchart(x)
+  }
+}
 
+plot_dist_op(dat[, 10], threshold = 10, use_boxplot = FALSE)
+
+
+filenames <- list.files(path = "data", pattern = "inflammation-[0-9]{2}.csv", full.names = TRUE)
+filename_max <- "" # filename where the maximum average inflammation patient is found
+patient_max <- 0 # index (row number) for this patient in this file
+average_inf_max <- 0 # value of the average inflammation score for this patient
+for (f in filenames) {
+  dat <- read.csv(file = f, header = FALSE)
+  dat.means <- apply(dat, 1, mean)
+  for (patient_index in 1:length(dat.means)){
+    patient_average_inf <- dat.means[patient_index]
+    if (patient_average_inf > average_inf_max) {
+      average_inf_max <- patient_average_inf
+      filename_max <- f
+      patient_max <- patient_index
+    }# Add your code here ...
+  }
+}
+print(filename_max)
+print(patient_max)
+print(average_inf_max)
+
+x <- c(0,1,2,0,3,4,4,6,8,6,8,9,9,10,11,13,16,5,6,15,10,16,14,11,16,15,10,9,10,10,5,5,8,7,5,3,2,3,1,1)
+mean(x)
+
+
+dat <- read.csv("data/inflammation-01.csv", header = FALSE)
+dat.means <- apply(dat, 1, mean)
+length(dat.means)
+?pdf()
+
+
+
+
+
+
+
+#saving automatically generated figures# ----
+
+
+analyze <- function(filename, output = NULL) {
+  # Plots the average, min, and max inflammation over time.
+  # Input:
+  #    filename: character string of a csv file
+  #    output: character string of pdf file for saving
+  if (!is.null(output)) {
+    pdf(output)
+  }
+  dat <- read.csv(file = filename, header = FALSE)
+  avg_day_inflammation <- apply(dat, 2, mean)
+  plot(avg_day_inflammation)
+  max_day_inflammation <- apply(dat, 2, max)
+  plot(max_day_inflammation)
+  min_day_inflammation <- apply(dat, 2, min)
+  plot(min_day_inflammation)
+  if (!is.null(output)) {
+    dev.off()
+  }
+}
+
+dir.create("results")
+
+analyze("data/inflammation-01.csv", output = "results/inflammation-01.pdf")
+
+f <- "inflammation-01.csv"
+sub("csv", "pdf", f)
+?file.path("results")
