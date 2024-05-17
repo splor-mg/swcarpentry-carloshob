@@ -436,11 +436,11 @@ analyze <- function(filename, output = NULL) {
   }
   dat <- read.csv(file = filename, header = FALSE)
   avg_day_inflammation <- apply(dat, 2, mean)
-  plot(avg_day_inflammation)
+  plot(avg_day_inflammation, type = "l")
   max_day_inflammation <- apply(dat, 2, max)
-  plot(max_day_inflammation)
+  plot(max_day_inflammation, type = "l")
   min_day_inflammation <- apply(dat, 2, min)
-  plot(min_day_inflammation)
+  plot(min_day_inflammation, type = "l")
   if (!is.null(output)) {
     dev.off()
   }
@@ -448,8 +448,12 @@ analyze <- function(filename, output = NULL) {
 
 dir.create("results")
 
-analyze("data/inflammation-01.csv", output = "results/inflammation-01.pdf")
+analyze("data/inflammation-01.csv", output = "results/inflammation-01_line.pdf")
 
 f <- "inflammation-01.csv"
 sub("csv", "pdf", f)
 ?file.path("results")
+
+#COMMAND-LINE PROGRAMS# ----
+
+
