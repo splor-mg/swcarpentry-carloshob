@@ -457,3 +457,43 @@ sub("csv", "pdf", f)
 #COMMAND-LINE PROGRAMS# ----
 
 
+$ Rscript readings.R --mean data/inflammation-01.csv
+
+sessionInfo()
+
+Rscript session-info.R
+
+print-args.R
+pring-args-trailing.R
+readings-01.R
+readings-02.R
+arith.R
+
+Rscript arith.R 1 + 2
+
+find-pattern.R
+
+?list.files
+
+readings-03.R
+
+Rscript readings-03.R data/small-01.csv data/small-02.csv
+
+check.R
+
+
+readings-04.R
+
+
+x <- 1
+x <- 2
+x
+
+readings-short.R
+
+readings-usage.R
+
+
+
+#handling standard input# ----
+
