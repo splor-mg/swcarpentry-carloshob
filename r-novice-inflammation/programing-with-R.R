@@ -497,3 +497,82 @@ readings-usage.R
 
 #handling standard input# ----
 
+count-stdin.R
+
+#BEST PRACTICES FOR WRITING R CODE# ----
+frequently commmit
+ - use `library` to load all of the necessary packages
+ - start your code with an annotated description of what the code does 
+ - limit the "hard-coding" - i.e. se o seu código ler um arquivo, defina previamente uma variável para guardar o caminho de tal arquivo;
+ - put "functions" definitions toward the top of your code - if many, put them all in their own
+ - consistency in style writting - makes code easier to read and problems easier to spot
+ - keep you source files in the same directory - use them by relative paths
+ - Wherever possible, keep track of sessionInfo() somewhere in your project folder.
+
+interim_object <- data.frame(rep(1:100, 10),
+                             rep(101:200, 10),
+                             rep(201:300, 10))
+
+x <- rep(1:100, 10)
+
+
+
+#Sample dataset of 1000 rows
+interim_object <- data.frame(rep(1:100, 10),
+                             rep(101:200, 10),
+                             rep(201:300, 10))
+object.size(interim_object) # Reports the memory size allocated to the object
+rm("interim_object") # Removes only the object itself and not necessarily the memory allotted to it
+gc() # Force R to release memory it is no longer using
+ls() # Lists all the objects in your current workspace
+rm(list = ls()) # If you want to delete all the objects in the workspace and start with a clean slate
+
+#DYNAMIC REPORTS WITH KNITR# ----
+
+install.packages("knitr")
+
+
+$\alpha = \dfrac{1}{(1 - \beta)^2}$ renders as: α=1(1−β)2
+
+#MAKING PACKAGES IN R# ----
+
+ - An R package requires four components:
+  > a DESCRIPTION file with metadata about the package
+  > an R directory with the code
+  > a man directory with documentation (we will create this automatically)
+  > a NAMESPACE file listing user-level functions in the package (we will also create this automatically)
+
+library("devtools")
+library("roxygen2")
+setwd("../package/")
+create_package("tempConvert")
+
+library(devtools)
+library(roxygen2)
+x <- getwd()
+setwd(x)
+getwd()
+
+create_package("tempConvert")
+setwd("C:/Users/carlo/OneDrive/!trb/@prog/package-sfwcrpt/tempConvert")
+ls()
+getwd()
+document()
+install("tempConvert")
+
+getwd()
+setwd("..")
+getwd()
+install("tempConvert")
+
+?fahrenheit_to_celsius
+
+
+
+
+
+#INTRODUCTION TO RSTUDIO# ----
+- console vs script windows - ctrl+1 ctrl+2
+- atribuição de operador "<-"
+
+#ADDRESSING DATA# ----
