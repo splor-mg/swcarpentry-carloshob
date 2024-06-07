@@ -576,3 +576,52 @@ install("tempConvert")
 - atribuição de operador "<-"
 
 #ADDRESSING DATA# ----
+
+dat <- read.csv(file = 'data/sample.csv', header = TRUE, stringsAsFactors = FALSE)
+class(dat)
+str(dat)
+head(dat)
+names(dat)
+x <- dat[1,1]
+names(x)
+dat[c(1, 5, 7, 9), 1:5]
+
+colnames(dat)
+names(dat)
+dat$Gender
+dat[,"Gender"]
+class(dat$Gender)
+class(dat$BloodPressure)
+
+head(dat[, c('Age', 'Gender')])
+
+dat2 <- read.csv(file = 'data/sample.csv', header = TRUE, stringsAsFactors = FALSE, row.names=1)
+rownames(dat2)
+
+dat2["Sub072", ]
+dat2[c("Sub009", "Sub072"), ]
+
+x <- c(1, 2, 3, 11, 12, 13)
+x < 10
+x %in% 1:10
+
+dat[,"Group"]
+
+index <- dat$Group == 'Control'
+dat[index,]$BloodPressure
+plot(dat[dat$Group == 'Control', ]$BloodPressure)
+
+
+-> Create a scatterplot showing BloodPressure for subjects not in the control group.
+plot(dat[dat$Group != 'Control', ]$BloodPressure)
+plot(dat[dat$Group %in% c("Treatment1", "Treatment2"), ]$BloodPressure)
+
+
+
+x <- c(1, 2, 3, 11, 12, 13)
+x[x < 10] <- 0
+x
+
+dat[dat$Gender == 'M', ]$Gender <- 'm'
+dat[dat$Gender == 'F', ]$Gender <- 'f'
+dat$Gender
