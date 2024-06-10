@@ -625,3 +625,61 @@ x
 dat[dat$Gender == 'M', ]$Gender <- 'm'
 dat[dat$Gender == 'F', ]$Gender <- 'f'
 dat$Gender
+
+
+#READINS AND WRITING CSV FILES# ----
+
+carSpeeds <- read.csv(file = 'data/car-speeds.csv')
+head(carSpeeds) 
+names(carSpeeds)
+head(carSpeeds,10)
+?read.csv()
+
+carSpeeds[1,]
+header(carSpeeds)
+
+carSpeeds <- read.csv(file = 'data/car-speeds.csv', stringsAsFactors = TRUE)
+
+carSpeeds$Color <- ifelse(carSpeeds$Color == 'Blue', 'Green', carSpeeds$Color)
+carSpeeds$Color
+
+carSpeeds <- read.csv(file = 'data/car-speeds.csv', stringsAsFactors = TRUE)
+str(carSpeeds)
+
+carSpeeds <- read.csv(file = 'data/car-speeds.csv', stringsAsFactors = FALSE)
+str(carSpeeds)
+carSpeeds$Color <- ifelse(carSpeeds$Color == 'Blue', 'Green', carSpeeds$Color)
+carSpeeds$Color
+head(carSpeeds$Color)
+
+carSpeeds <- read.csv(file = 'data/car-speeds.csv', as.is = 1)
+head(carSpeeds)
+str(carSpeeds)
+carSpeeds$Color <- ifelse(carSpeeds$Color == 'Blue', 'Green', carSpeeds$Color)
+carSpeeds$Color
+carSpeeds$State <- ifelse(carSpeeds$State == 'Arizona', 'Ohio', carSpeeds$State)
+carSpeeds$State
+
+?read.csv
+
+read.csv(file = "data/inflammation-01.csv", na.strings = "0")
+read.csv(
+  file = 'data/car-speeds.csv',
+  na.strings = c("Black", "Blue")
+)
+
+
+write.csv(head(carSpeeds), file = 'data/car-speeds-cleaned.csv')
+write.csv(head(carSpeeds), file = 'data/car-speeds-cleaned.csv', row.names = FALSE)
+
+
+carSpeeds$Speed[3] <- NA
+head(carSpeeds)
+write.csv(carSpeeds, file = 'data/car-speeds-cleaned.csv', row.names = FALSE)
+write.csv(head(carSpeeds),
+          file = 'data/car-speeds-cleaned.csv',
+          row.names = FALSE,
+          na = '-9999')
+
+
+
