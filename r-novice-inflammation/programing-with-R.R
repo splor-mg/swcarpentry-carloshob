@@ -684,8 +684,6 @@ write.csv(head(carSpeeds),
 
 
 
-
-
 #UNDERSTANDING FACTORS# ----
 
 sex <- factor(c("male", "female", "female", "male"))
@@ -737,3 +735,13 @@ plot(x = dat$Gender, y = dat$BloodPressure)
 levels(dat$Gender)[2] <- 'f'
 plot(x = dat$Gender, y = dat$BloodPressure)
 
+
+#DATA TYPES AND STRUCTURES# ----
+
+x <- "dataset"
+typeof(x)
+attributes(x)
+
+
+y <- 1:10
+y
