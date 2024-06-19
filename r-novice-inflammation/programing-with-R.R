@@ -745,3 +745,44 @@ attributes(x)
 
 y <- 1:10
 y
+typeof(y)
+length(y)
+
+z <- as.numeric(y)
+z
+typeof(z)
+
+vector() # an empty 'logical' (the default) vector
+vector("character", length = 5) # a vector of mode 'character' with 5 elements
+character(5) # the same thing, but using the constructor directly
+numeric(5)   # a numeric vector with 5 elements
+logical(5)   # a logical vector with 5 elements
+
+
+#-> create vectors by directly specifying their content. R will then 
+# guess the appropriate mode of storage
+
+
+x <- c(1, 2, 3) #numeric - double precision real numbers
+  typeof(x)
+  length(x)
+  class(x)
+  str(x)
+
+x1 <- c(1L, 2L, 3L) #to explicitly creat an interger, add an "L" to each element
+  typeof(x1)
+  length(x1)
+  class(x1)
+  str(x1)
+
+y <- c(TRUE, TRUE, FALSE, FALSE)
+  typeof(y)
+  length(y)
+  class(y)
+  str(y)
+
+z <- c("Sarah", "Tracy", "Jon")
+  typeof(z)
+  length(z)
+  class(z)
+  str(z)
